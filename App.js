@@ -1,24 +1,19 @@
-// import { Canvas } from "@react-three/fiber";
-// import { Suspense } from "react";
-// import { View, Dimensions } from "react-native";
-// import { Pet2 } from "./src/models/Pet2";
-
-// const { width, height } = Dimensions.get("window");
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from "@react-navigation/native";
 import { StackNavigator } from "./src/navigator/StackNavigator";
+import { PetProvider } from "./src/context/PetContext";
 
-export default function App() {
+const App = () => {
   return (
-    // <View style={{ height: height, width }}>
-    //   <Canvas>
-    //     <ambientLight intensity={0.7} />
-    //     <Suspense fallback={null}>
-    //       <Pet2 />
-    //     </Suspense>
-    //   </Canvas>
-    // </View>
     <NavigationContainer>
-      <StackNavigator />
+      <AppState>
+        <StackNavigator />
+      </AppState>
     </NavigationContainer>
   );
-}
+};
+
+const AppState = ({ children }) => {
+  return <PetProvider>{children}</PetProvider>;
+};
+
+export default App;
